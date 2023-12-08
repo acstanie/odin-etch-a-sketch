@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    border: 1px solid black;
+    display: flex;
+}
+
+.col-div {
+    border: 2px solild red;
+    width: 20px;
+    height: 20px;
+}
