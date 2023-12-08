@@ -1,15 +1,20 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    
 }
 
 .container {
     border: 1px solid black;
     display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
 }
 
 .col-div {
-    border: 2px solild red;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid black;
 }

@@ -7,7 +7,7 @@ function createContainer() {
 
 function createGrid() {
     const container = document.querySelector('.container');
-    let dimension = 16;
+    let dimension = 25;
 
     for(let i = 0; i < dimension; i++) {
         const rowDiv = document.createElement('div');
@@ -17,11 +17,21 @@ function createGrid() {
             const colDiv = document.createElement('div');
             colDiv.classList.toggle('col-div');
             rowDiv.appendChild(colDiv);
-            colDiv.style.border = '1px solid black';
         }  
     }
 }
 
+function makeSketch() {
+    createContainer();
+    createGrid();
 
-createContainer();
-createGrid();
+    const colDiv = document.querySelectorAll(".col-div");
+
+    for(let i = 0; i < colDiv.length; i++) {
+        colDiv[i].addEventListener('dragover', (e) => {
+            colDiv[i].style.backgroundColor = 'black';
+        });
+    }
+}
+
+makeSketch();
