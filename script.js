@@ -2,22 +2,37 @@ function createContainer() {
     const body = document.querySelector('body');
     const gridContainer = document.createElement('div');
     const container = document.createElement('div');
+    const gridLayout = document.createElement('button');
     const clearBtn = document.createElement('button');
 
     container.classList.toggle('container');
     gridContainer.classList.toggle('grid-container');
     clearBtn.setAttribute('id', 'clear-btn');
+    gridLayout.setAttribute('id', 'create-grid-layout');
+
+    gridLayout.textContent = 'Create Grid Layout';
     clearBtn.textContent = 'Clear';
 
-    container.appendChild(clearBtn);
+    
     body.appendChild(container);
+    container.appendChild(clearBtn);
+    container.appendChild(gridLayout);
     container.appendChild(gridContainer);
 }
 
-function createGrid() {
+function createGridLayout() {
+    const gridLayout = document.querySelector('.create-grid-layout');
+    let row;
+    let col;
+
+    gridLayout.addEventListener('click', (e) => {
+        row = window.prompt("What is the size of the row?(max size 100)");
+        col = window.prompt("What is the size of the column?(max size 100)");
+    });
+}
+
+function createGrid(row, col) {
     const gridContainer = document.querySelector('.grid-container');
-    let row = 2;
-    let col = 2;
 
     for(let i = 0; i < col; i++) {
         const rowDiv = document.createElement('div');
