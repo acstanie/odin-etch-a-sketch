@@ -12,23 +12,11 @@ function createContainer() {
 
     gridLayout.textContent = 'Create Grid Layout';
     clearBtn.textContent = 'Clear';
-
     
     body.appendChild(container);
     container.appendChild(clearBtn);
     container.appendChild(gridLayout);
     container.appendChild(gridContainer);
-}
-
-function createGridLayout() {
-    const gridLayout = document.querySelector('.create-grid-layout');
-    let row;
-    let col;
-
-    gridLayout.addEventListener('click', (e) => {
-        row = window.prompt("What is the size of the row?(max size 100)");
-        col = window.prompt("What is the size of the column?(max size 100)");
-    });
 }
 
 function createGrid(row, col) {
@@ -48,29 +36,48 @@ function createGrid(row, col) {
 
 function clearGrid() {
     const clearBtn = document.querySelector('#clear-btn');
-    const colDiv = document.querySelectorAll('.col-div');
+    const rowDiv = document.querySelectorAll('.row-div');
+    const gridLayout = document.querySelector('#create-grid-layout');
 
     clearBtn.addEventListener('click', (e) => {
-        for(let i = 0; i < colDiv.length; i++) {
-            colDiv[i].style.backgroundColor = 'white';
+        for(let i = 0; i < rowDiv.length; i++) {
+            rowDiv[i].remove();
         }
+    });
 
+    gridLayout.addEventListener('click', (e) => {
+        for(let i = 0; i < rowDiv.length; i++) {
+            rowDiv[i].remove();
+        }
     });
 }
 
 function makeSketch() {
     createContainer();
-    createGrid();
 
-    const colDiv = document.querySelectorAll(".col-div");
+    const gridLayout = document.querySelector('#create-grid-layout');
+    let row;
+    let col;
 
-    for(let i = 0; i < colDiv.length; i++) {
-            colDiv[i].addEventListener('dragover', (e) => {
-            colDiv[i].style.backgroundColor = 'black';
-        });
-    }
+    gridLayout.addEventListener('click', (e) => {
+        clearGrid();
+        row = window.prompt("What is the size of the row?(max size 100)");
+        col = window.prompt("What is the size of the column?(max size 100)"); 
 
-    clearGrid();
+        createGrid(Number(row), Number(col));
+
+        const colDiv = document.querySelectorAll(".col-div");
+
+        for(let i = 0; i < colDiv.length; i++) {
+                colDiv[i].addEventListener('mouseover', (e) => {
+                    let redVal = Math.floor(Math.random * 256);
+                    colDiv[i].style.backgroundColor = `rgba(0, 0, 0, 1)`;
+            });
+        }
+
+        clearGrid();
+    }); 
+
 }
 
 makeSketch();
